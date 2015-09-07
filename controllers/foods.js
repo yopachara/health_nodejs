@@ -1,5 +1,7 @@
 var Foods = require('../models/foods');
+var wordcut = require("../lib/wordcut");
 
+wordcut.init();
 exports.postFoods = (function(req, res) {
     var foods = new Foods();
 
@@ -7,6 +9,10 @@ exports.postFoods = (function(req, res) {
     foods.cal = req.body.cal;
     foods.protien = req.body.protien;
     foods.fat = req.body.fat;
+    out = wordcut.cut(foods.name);
+    console.log(out);
+    foods.foodcuts = out.split("|")
+    console.log(foods.foodcuts);
 
     foods.save(function(err){
         if(err){

@@ -12,7 +12,6 @@ var oauth2Controller = require('./controllers/oauth2');
 var clientController = require('./controllers/client');
 var port = process.env.PORT || 3000;
 
-
 // Connect to the MongoDB
 mongoose.connect('mongodb://localhost:27017/health')
 
@@ -81,4 +80,5 @@ app.use(router);
 // Start the server
 app.listen(port);
 console.log('server start on port 3000');
+
 
