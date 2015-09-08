@@ -50,6 +50,12 @@ exports.putFood = (function(req, res){
         foods.cal = req.body.cal;
         foods.protien = req.body.protien;
         foods.fat = req.body.fat;
+        foods.carbo = req.body.carbo;
+        out = wordcut.cut(foods.name);
+        console.log(out);
+        foods.foodcuts = out.split("|")
+        console.log(foods.foodcuts);
+
 
         foods.save(function(err){
             if(err){
@@ -61,7 +67,7 @@ exports.putFood = (function(req, res){
 });
 
 exports.deleteFood = (function(req, res){
-    Foods.findByAndRemove(req.params.food_id, function(err){
+    foods.findByAndRemove(req.params.food_id, function(err){
         if(err){
             res.send(err);
         }
