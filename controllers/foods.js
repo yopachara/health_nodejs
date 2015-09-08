@@ -9,6 +9,7 @@ exports.postFoods = (function(req, res) {
     foods.cal = req.body.cal;
     foods.protien = req.body.protien;
     foods.fat = req.body.fat;
+    foods.carbo = req.body.carbo;
     out = wordcut.cut(foods.name);
     console.log(out);
     foods.foodcuts = out.split("|")

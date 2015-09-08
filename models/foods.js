@@ -5,6 +5,7 @@ var FoodSchema = new mongoose.Schema({
     cal: Number,
     protien: Number,
     fat: Number,
+    carbo: Number, 
     foodcuts: Array
 });
 
