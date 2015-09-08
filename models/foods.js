@@ -4,7 +4,8 @@ var FoodSchema = new mongoose.Schema({
     name: String,
     cal: Number,
     protien: Number,
-    fat: Number
+    fat: Number,
+    foodcuts: Array
 });
 
 //Export
