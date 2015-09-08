@@ -46,17 +46,26 @@ exports.putFood = (function(req, res){
         if(err){
             res.send(err);
         }
-        foods.name = req.body.name;
-        foods.cal = req.body.cal;
-        foods.protien = req.body.protien;
-        foods.fat = req.body.fat;
-        foods.carbo = req.body.carbo;
-        out = wordcut.cut(foods.name);
-        console.log(out);
-        foods.foodcuts = out.split("|")
-        console.log(foods.foodcuts);
+        if(req.body.name) {
+            foods.name = req.body.name;
+            out = wordcut.cut(foods.name);
+            console.log(out);
+            foods.foodcuts = out.split("|")
+            console.log(foods.foodcuts);
 
-
+        }
+        if(req.body.cal) {
+            foods.cal = req.body.cal;
+        }
+        if(req.body.name) {
+            foods.protien = req.body.protien;
+        }
+        if(req.body.name) {
+            foods.fat = req.body.fat;
+        }
+        if(req.body.name) {
+            foods.carbo = req.body.carbo;
+        }
         foods.save(function(err){
             if(err){
                 res.send(err);
@@ -67,10 +76,10 @@ exports.putFood = (function(req, res){
 });
 
 exports.deleteFood = (function(req, res){
-    foods.findByAndRemove(req.params.food_id, function(err){
-        if(err){
-            res.send(err);
-        }
-        res.json({ message: 'Food removed form the store! Yeahh' });
-    });
+    Foods.remove({ _id : req.params.food_id }, function(err) {
+    if (err)
+      res.send(err);
+
+    res.json({ message: 'Food removed from the locker!' });
+  });
 });
