@@ -83,3 +83,28 @@ exports.deleteFood = (function(req, res){
     res.json({ message: 'Food removed from the locker!' });
   });
 });
+
+exports.searchFood = (function(req, res){
+    search = req.body.search;
+    out = wordcut.cut(search);
+    console.log(out);
+    searchcuts = out.split("|")
+    console.log(searchcuts);
+    var tmp = {};
+    //Foods.find({"foodcuts": search})
+    for(var i = 0;i < searchcuts.length; i++){
+        if (search) {
+            Foods.find({ foodcuts: searchcuts[i] }, function (err, docs) {
+                if(err){
+                res.send(err);
+                }
+
+                tmp = JSON.parse(docs);
+
+                //res.json(docs);
+                console.log(docs);
+                console.log(tmp);
+            });
+        }
+    }
+});

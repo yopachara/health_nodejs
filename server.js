@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var ejs = require('ejs');
 var session = require('express-session');
 var passport = require('passport');
+
 var foodController = require('./controllers/foods');
 var userController = require('./controllers/user');
 var authController = require('./controllers/auth');
@@ -54,8 +55,9 @@ router.route('/api/foods/:food_id')
     .get(authController.isAuthenticated, foodController.getFood)
     .put(authController.isAuthenticated, foodController.putFood)
     .delete(authController.isAuthenticated, foodController.deleteFood);
-
-// Create endpoint handlers for /users
+router.route('/api/foods/search')
+    .post(foodController.searchFood);
+//Create endpoint handlers for /users
 router.route('/api/users')
     .post(userController.postUsers)
     .get(authController.isAuthenticated, userController.getUsers);
