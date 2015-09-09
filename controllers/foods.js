@@ -7,7 +7,7 @@ exports.postFoods = (function(req, res) {
 
     foods.name = req.body.name;
     foods.cal = req.body.cal;
-    foods.protien = req.body.protien;
+    foods.protein = req.body.protein;
     foods.fat = req.body.fat;
     foods.carbo = req.body.carbo;
     out = wordcut.cut(foods.name);

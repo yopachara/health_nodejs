@@ -3,7 +3,7 @@ var mongoose = require('mongoose')
 var FoodSchema = new mongoose.Schema({
     name: String,
     cal: Number,
-    protien: Number,
+    protein: Number,
     fat: Number,
     carbo: Number, 
     foodcuts: Array
