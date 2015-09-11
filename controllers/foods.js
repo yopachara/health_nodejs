@@ -144,7 +144,6 @@ exports.searchFood = (function(req, res){
     console.log(out);
     searchcuts = out.split("|")
     console.log(searchcuts);
-    var tmp = null;
     list = [];
     function asyncLoop(i, cb) {
         if (i < searchcuts.length) {
@@ -152,55 +151,74 @@ exports.searchFood = (function(req, res){
                 list.push(o);
                 asyncLoop(i+1, cb);
             });
-     } else {
+        } else {
             cb();
         }
     }
 
     asyncLoop(0, function() {
-        list[0][0]['__v'] = 1;
-        console.log(list[0].length);
-       // var count = [];
-        /*for(var i = 0;i < list.length ;i++){*/
-            //for(var j = 0;j< list[i].length;j++){
-               //if(count[i][j][_id] != list[i])
-                //count = list[i][j];
-            //}
-        /*}*/
-        var array1 = list[0];
-        var array2 = list[1];
-        var array3 = list[2];
-        // Merges both arrays and gets unique items
-        var array3 = array1.concat(array2).concat(array3);
-        //console.log(array3);
-        console.log(array3[2]);
+
+
+        //console.log(list.length);
+        var listcon = new Array();
+        for(var i = 0;i<list.length;i++){
+            listcon = listcon.concat(list[i]);
+        }
+        //listcon = JSON.stringify(listcon);
+        //listcon = listcon.sort();
 
         var map = new Object();
-        //array3 = array3.sort();
-        var result = JSON.stringify(array3);
-        for(var i = 0; i < result.length; i++) {
-            if(map[result[i]] != null) {
-                map[result[i][_id]] += 1;
-                result[i]['count'] =1;
-            }else {
-                map[array3[i][_id]] = 1;
-                result[i]['count'] = 1;
+
+        var counts = [];
+        for(var i = 0;i < listcon.length;i++){
+            if(map[listcon[i]['_id']] != null) {
+                map[listcon[i]['_id']] += 1;
+            } else {
+                map[listcon[i]['_id']] = 1;
             }
-
         }
-        result[0]['count'] = 2;
-        var result2 = JSON.stringify(map);
-        console.log(result2);
+        var arr = Object.keys( map ).map(function ( key ) { return map[key]; });
+        console.log(arr);
+        var i = arr.indexOf(Math.max.apply(Math, arr));
+                //var i = counts.indexOf(Math.max.apply(Math, counts));
+        res.json(listcon[i]);
 
-
-        //console.log(array3);
-        //console.log(
-        //var counts = {};
-        //array3.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
-
-        //console.log(counts);
-
-
-        res.json(map);
     });
+
+
+    //list[2][0]['__v'] = 10;
+
+
 });
+
+
+function compressArray(original) {
+
+    var compressed = [];
+    // make a copy of the input array
+    var copy = original.slice(0);
+
+    // first loop goes over every element
+    for (var i = 0; i < original.length; i++) {
+
+        var myCount = 0;
+        // loop over every element in the copy and see if it's the same
+        for (var w = 0; w < copy.length; w++) {
+            if (original[i] == copy[w]) {
+                // increase amount of times duplicate is found
+                myCount++;
+                // sets item to undefined
+                delete copy[w];
+            }
+        }
+
+        if (myCount > 0) {
+            var a = new Object();
+            a.value = original[i];
+            a.count = myCount;
+            compressed.push(a);
+        }
+    }
+
+    return compressed;
+};
