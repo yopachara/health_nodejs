@@ -41,7 +41,7 @@ app.use(passport.initialize());
 var router = express.Router();
 
 // Initial dummy route for testing
-// http://localhost:3000/api
+// http://localhost:3000
 router.get('/', function(req, res) {
   res.json({ message: 'You are running on yopachara!' });
 });
@@ -55,8 +55,10 @@ router.route('/api/foods/:food_id')
     .get(authController.isAuthenticated, foodController.getFood)
     .put(authController.isAuthenticated, foodController.putFood)
     .delete(authController.isAuthenticated, foodController.deleteFood);
+// Route for search food
 router.route('/api/foods/search')
     .post(foodController.searchFood);
+
 //Create endpoint handlers for /users
 router.route('/api/users')
     .post(userController.postUsers)
