@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
 var FoodSchema = new mongoose.Schema({
-    name: String,
+    name: {
+        type: String,
+        unique: true,
+        require: true
+    },
     cal: Number,
     protein: Number,
     fat: Number,
