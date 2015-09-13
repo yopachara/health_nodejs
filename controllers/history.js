@@ -14,7 +14,7 @@ exports.postHistory = (function(req, res){
     });
 });
 
-exports.getHistory = (function(req, res){
+exports.getHistorys = (function(req, res){
     History.find(function(err, history){
         if(err){
             res.send(err);
@@ -23,4 +23,12 @@ exports.getHistory = (function(req, res){
     });
 });
 
+exports.getHistory = (function(req, res){
+    History.find({username : req.params.username}, function(err, history){
+        if(err){
+            res.send(err);
+        }
+        res.json(history);
+    });
+});
 

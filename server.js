@@ -68,6 +68,8 @@ router.route('/api/users')
 //Create endpoint handlers for history
 router.route('/api/history')
     .post(historyController.postHistory)
+    .get(historyController.getHistorys);
+router.route('/api/history/:username')
     .get(historyController.getHistory);
 
 // Create endpoint handlers for /clients
