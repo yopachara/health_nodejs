@@ -181,13 +181,13 @@ exports.searchFood = (function(req, res){
         console.log(arr);
         var i = arr.indexOf(Math.max.apply(Math, arr));
                 //var i = counts.indexOf(Math.max.apply(Math, counts));
+        console.log(listcon[i]);
         res.json(listcon[i]);
 
     });
 
 
     //list[2][0]['__v'] = 10;
-
 
 });
 

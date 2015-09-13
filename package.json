@@ -18,6 +18,7 @@
     "passport-http": "^0.2.2",
     "passport-http-bearer": "^1.0.1",
     "passport-local": "^1.0.0",
+    "underscore": "^1.8.3",
     "wordcut": "^0.7.5"
   },
   "devDependencies": {

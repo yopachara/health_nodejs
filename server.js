@@ -8,6 +8,7 @@ var passport = require('passport');
 
 var foodController = require('./controllers/foods');
 var userController = require('./controllers/user');
+var historyController = require('./controllers/history');
 var authController = require('./controllers/auth');
 var oauth2Controller = require('./controllers/oauth2');
 var clientController = require('./controllers/client');
@@ -63,6 +64,11 @@ router.route('/api/foods/search')
 router.route('/api/users')
     .post(userController.postUsers)
     .get(authController.isAuthenticated, userController.getUsers);
+
+//Create endpoint handlers for history
+router.route('/api/history')
+    .post(historyController.postHistory)
+    .get(historyController.getHistory);
 
 // Create endpoint handlers for /clients
 router.route('/api/clients')
