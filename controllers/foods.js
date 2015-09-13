@@ -84,59 +84,6 @@ exports.deleteFood = (function(req, res){
   });
 });
 
-/*exports.searchFood = (function(req, res){*/
-    //search = req.body.search;
-    //out = wordcut.cut(search);
-    //console.log(out);
-    //searchcuts = out.split("|")
-    //console.log(searchcuts);
-    //var tmp;
-    ////Foods.find({"foodcuts": search})
-    //for(var i = 0;i < searchcuts.length; i++){
-        //Foods.find({ foodcuts: searchcuts[i] }, function (err, docs) {
-            //if(err){
-                //res.send(err);
-            //}
-            //tmp = docs;
-            ////res.json(docs);
-            //console.log(docs);
-            //console.log(tmp);
-            //if (tmp === undefined) {
-            //console.log('tmp is undefined')
-            //}
-        //});
-
-        //res.json(tmp);
-        //if (tmp === undefined) {
-            //console.log('tmp is undefined')
-        //}
-
-
-    //}
-    //console.log(tmp);
-
-    //res.json(tmp);
-/*});*/
-
-/*exports.searchFood = (function(req, res){*/
-    //search = req.body.search;
-    //out = wordcut.cut(search);
-    //console.log(out);
-    //searchcuts = out.split("|")
-    //console.log(searchcuts);
-    //var tmp = null;
-    ////Foods.find({"foodcuts": search});
-    //for(var i = 0;i < searchcuts.length; i++){
-        //Foods.find({ foodcuts: searchcuts[i] }, function (err, docs) {
-            //tmp = docs;
-////            console.log(docs);
-            //console.log(docs);
-            //tmp = JSON.stringify(docs);
-
-        //});
-    //}
-    //res.json(tmp);
-/*});*/
 
 exports.searchFood = (function(req, res){
     search = req.body.search;
@@ -158,15 +105,10 @@ exports.searchFood = (function(req, res){
 
     asyncLoop(0, function() {
 
-
-        //console.log(list.length);
         var listcon = new Array();
         for(var i = 0;i<list.length;i++){
             listcon = listcon.concat(list[i]);
         }
-        //listcon = JSON.stringify(listcon);
-        //listcon = listcon.sort();
-
         var map = new Object();
 
         var counts = [];
@@ -178,11 +120,16 @@ exports.searchFood = (function(req, res){
             }
         }
         var arr = Object.keys( map ).map(function ( key ) { return map[key]; });
-        console.log(arr);
-        var i = arr.indexOf(Math.max.apply(Math, arr));
-                //var i = counts.indexOf(Math.max.apply(Math, counts));
-        console.log(listcon[i]);
-        res.json(listcon[i]);
+        var namearr = Object.keys(map);
+        var maxValue = Math.max.apply(null, arr);
+        var newarr = new Array();
+        for(var j = 0;j<arr.length;j++){
+            if(arr[j] == maxValue){
+                newarr.push(listcon[findIndex(listcon,'_id',namearr[j])]);
+            }
+        }
+        console.log(newarr);
+        res.json(newarr);
 
     });
 
@@ -190,6 +137,15 @@ exports.searchFood = (function(req, res){
     //list[2][0]['__v'] = 10;
 
 });
+
+function findIndex(arraytosearch, key, valuetosearch) {
+    for (var i = 0; i < arraytosearch.length; i++) {
+        if (arraytosearch[i][key] == valuetosearch) {
+            return i;
+        }
+    }
+    return null;
+}
 
 
 function compressArray(original) {
