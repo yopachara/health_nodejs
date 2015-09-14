@@ -56,7 +56,7 @@ exports.putFood = (function(req, res){
         foods.foodcuts = out.split("|");
         console.log(foods.foodcuts);
         foods.cal = req.body.cal;
-        foods.protien = req.body.protien;
+        foods.protein = req.body.protein;
         foods.fat = req.body.fat;
         foods.carbo = req.body.carbo;
         foods.type = req.body.type;
