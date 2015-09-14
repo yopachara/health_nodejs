@@ -9,6 +9,9 @@ var FoodSchema = new mongoose.Schema({
     protein: Number,
     fat: Number,
     carbo: Number,
+    type: String,
+    weight: Number,
+    classifier: String,
     foodcuts: Array
 });
 

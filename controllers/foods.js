@@ -10,6 +10,9 @@ exports.postFoods = (function(req, res) {
     foods.protein = req.body.protein;
     foods.fat = req.body.fat;
     foods.carbo = req.body.carbo;
+    foods.type = req.body.type;
+    foods.weight = req.body.weight;
+    foods.classifier = req.body.classifier;
     out = wordcut.cut(foods.name);
     console.log(out);
     foods.foodcuts = out.split("|")
@@ -46,26 +49,19 @@ exports.putFood = (function(req, res){
         if(err){
             res.send(err);
         }
-        if(req.body.name) {
-            foods.name = req.body.name;
-            out = wordcut.cut(foods.name);
-            console.log(out);
-            foods.foodcuts = out.split("|")
-            console.log(foods.foodcuts);
 
-        }
-        if(req.body.cal) {
-            foods.cal = req.body.cal;
-        }
-        if(req.body.name) {
-            foods.protien = req.body.protien;
-        }
-        if(req.body.name) {
-            foods.fat = req.body.fat;
-        }
-        if(req.body.name) {
-            foods.carbo = req.body.carbo;
-        }
+        foods.name = req.body.name;
+        out = wordcut.cut(foods.name);
+        console.log(out);
+        foods.foodcuts = out.split("|");
+        console.log(foods.foodcuts);
+        foods.cal = req.body.cal;
+        foods.protien = req.body.protien;
+        foods.fat = req.body.fat;
+        foods.carbo = req.body.carbo;
+        foods.type = req.body.type;
+        foods.weight = req.body.weight;
+        foods.classifier = req.body.classifier;
         foods.save(function(err){
             if(err){
                 res.send(err);
