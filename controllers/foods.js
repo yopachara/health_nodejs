@@ -45,31 +45,28 @@ exports.getFood = (function(req, res){
 });
 
 exports.putFood = (function(req, res){
-    Foods.findById(req.params.food_id, function(err,foods){
-        if(err){
-            res.send(err);
-        }
+    out = wordcut.cut( req.body.name);
+    foodcuts = out.split("|");
+    Foods.update({ _id: req.params.food_id }, {
+        name : req.body.name,
+        foodcuts : foodcuts,
+        cal: req.body.cal,
+        protein: req.body.protein,
+        fat: req.body.fat,
+        carbo : req.body.carbo,
+        type : req.body.type,
+        weight : req.body.weight,
+        classifier : req.body.classifier
 
-        foods.name = req.body.name;
-        out = wordcut.cut(foods.name);
-        console.log(out);
-        foods.foodcuts = out.split("|");
-        console.log(foods.foodcuts);
-        foods.cal = req.body.cal;
-        foods.protein = req.body.protein;
-        foods.fat = req.body.fat;
-        foods.carbo = req.body.carbo;
-        foods.type = req.body.type;
-        foods.weight = req.body.weight;
-        foods.classifier = req.body.classifier;
+    }, function(err, num) {
+    if (err){
+        res.send(err);
+    }
+    console.log(out);
+    console.log(foodcuts);
 
-        Foods.save(function(err){
-            if(err){
-                res.send(err);
-            }
-            res.json(foods);
-        });
-    });
+    res.json({ message: num});
+  });
 });
 
 exports.deleteFood = (function(req, res){
