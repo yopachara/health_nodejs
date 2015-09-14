@@ -108,6 +108,7 @@ exports.searchFood = (function(req, res){
         var listcon = new Array();
         for(var i = 0;i<list.length;i++){
             listcon = listcon.concat(list[i]);
+            console.log(searchcuts[i],list[i].length);
         }
         var map = new Object();
 
@@ -128,6 +129,10 @@ exports.searchFood = (function(req, res){
                 newarr.push(listcon[findIndex(listcon,'_id',namearr[j])]);
             }
         }
+        console.log('Total',listcon.length,'object');
+        console.log('Find duplicate object',arr);
+        console.log('Highest value is',maxValue);
+        console.log('Total highest value is',newarr.length);
         console.log(newarr);
         res.json(newarr);
 
