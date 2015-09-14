@@ -62,7 +62,8 @@ exports.putFood = (function(req, res){
         foods.type = req.body.type;
         foods.weight = req.body.weight;
         foods.classifier = req.body.classifier;
-        foods.save(function(err){
+
+        Foods.save(function(err){
             if(err){
                 res.send(err);
             }
