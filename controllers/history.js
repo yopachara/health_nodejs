@@ -19,7 +19,7 @@ exports.getHistorys = (function(req, res){
         if(err){
             res.send(err);
         }
-        res.json(history);
+        res.json({result : history});
     });
 });
 
