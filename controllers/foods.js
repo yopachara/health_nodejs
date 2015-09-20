@@ -31,7 +31,7 @@ exports.getFoods = (function(req, res){
         if(err){
             res.send(err);
         }
-        res.json(foods);
+        res.json({ result: foods} );
     });
 });
 
@@ -124,16 +124,14 @@ exports.searchFood = (function(req, res){
             }
         }
         console.log('Total',listcon.length,'object');
-        console.log('Find duplicate object',arr);
-        console.log('Highest value is',maxValue);
-        console.log('Total highest value is',newarr.length);
+        console.log('Find duplicate object', arr);
+        console.log('Highest value is', maxValue);
+        console.log('Total highest value is', newarr.length);
         console.log(newarr);
-        res.json(newarr);
+        res.json({ result : newarr });
 
     });
 
-
-    //list[2][0]['__v'] = 10;
 
 });
 

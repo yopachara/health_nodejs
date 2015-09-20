@@ -50,7 +50,7 @@ router.get('/', function(req, res) {
 
 router.route('/api/foods')
     .post(authController.isAuthenticated, foodController.postFoods)
-    .get(authController.isAuthenticated, foodController.getFoods);
+    .get(foodController.getFoods);
 
 router.route('/api/foods/:food_id')
     .get(authController.isAuthenticated, foodController.getFood)
