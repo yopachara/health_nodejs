@@ -15,7 +15,11 @@ var clientController = require('./controllers/client');
 var port = process.env.PORT || 3000;
 
 // Connect to the MongoDB
-mongoose.connect('mongodb://localhost:27017/health')
+mongoose.connect('mongodb://localhost:27017/health', function (err) {
+  if (err) {
+    console.log(err);
+  }
+});
 
 // Create our Express application
 var app = express();
