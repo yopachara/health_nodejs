@@ -15,11 +15,23 @@ var clientController = require('./controllers/client');
 var port = process.env.PORT || 3000;
 
 // Connect to the MongoDB
-mongoose.connect('mongodb://localhost:27017/health', function (err) {
-  if (err) {
-    console.log(err);
-  }
+/*mongoose.connect('mongodb://localhost:27017/health', function (err) {*/
+  //if (err) {
+    //console.log(err);
+  //}
+/*});*/
+
+
+var mongoURI = "mongodb://localhost:27017/health";
+var MongoDB = mongoose.connect(mongoURI).connection;
+MongoDB.on('error', function(err) { console.log(err.message); });
+MongoDB.once('open', function() {
+  console.log("mongodb connection open");
 });
+
+
+
+
 
 // Create our Express application
 var app = express();
