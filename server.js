@@ -60,7 +60,7 @@ var router = express.Router();
 // Initial dummy route for testing
 // http://localhost:3000
 router.get('/', function(req, res) {
-  res.json({ message: 'You are running on yopachara!' });
+  res.json({ message: 'This is running on yopachara server!' });
 });
 
 
