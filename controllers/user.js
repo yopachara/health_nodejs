@@ -5,7 +5,13 @@ var User = require('../models/user');
 exports.postUsers = function(req, res) {
   var user = new User({
     username: req.body.username,
-    password: req.body.password
+    password: req.body.password,
+    sex: req.body.sex,
+    weight: req.body.weight,
+    height: req.body.height,
+    birthdate: req.body.birthdate,
+    createAt: req.body.createAt,
+    type: req.body.type
   });
 
   user.save(function(err) {
@@ -15,7 +21,13 @@ exports.postUsers = function(req, res) {
     res.json({ message: 'New User in this project!',
                 "id": user.id,
                 "username": user.username,
-                "password": user.password
+                "password": user.password,
+                "sex": user.sex,
+                "weight": user.weight,
+                "height": user.height,
+                "birthdate": user.birthdate,
+                "createAt": user.birthdate,
+                "type": user.type
             });
   });
 };
