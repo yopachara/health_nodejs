@@ -27,6 +27,9 @@ var UserSchema = new mongoose.Schema({
   },
   createAt: {
     type: Date, default: Date.now
+  },
+  type: {
+    type: String, default: "Android"
   }
 });
 
