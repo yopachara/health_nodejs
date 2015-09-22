@@ -9,6 +9,24 @@ var HistorySchema = new mongoose.Schema({
         type: String,
         require: true
     },
+    cal: {
+        type: Number
+    },
+    protein: {
+        type: Number
+    },
+    fat: {
+        type: Number
+    },
+    carbo: {
+        type: Number
+    },
+    weight: {
+        type: Number
+    },
+    classifier: {
+        type: String
+    },
     date: { type: Date, default: Date.now }
 });
 
