@@ -5,6 +5,12 @@ exports.postHistory = (function(req, res){
 
     history.username = req.body.username;
     history.foodname = req.body.foodname;
+    history.cal = req.body.cal;
+    history.protein = req.body.protein;
+    history.fat = req.body.fat;
+    history.carbo = req.body.carbo;
+    history.weight = req.body.weight;
+    history.classifier = req.body.classifier;
 
     history.save(function(err){
         if(err){

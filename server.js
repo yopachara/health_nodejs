@@ -63,6 +63,8 @@ router.get('/', function(req, res) {
   res.json({ message: 'This is running on yopachara server!' });
 });
 
+router.route('/api/login')
+    .post(authController.isAuthenticated)
 
 router.route('/api/foods')
     .post(authController.isAuthenticated, foodController.postFoods)
