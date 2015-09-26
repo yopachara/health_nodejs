@@ -10,6 +10,7 @@ var Token = require('../models/token');
 
 passport.use(new BasicStrategy(
   function(username, password, callback) {
+
     User.findOne({ username: username }, function (err, user) {
       if (err) { return callback(err); }
 
