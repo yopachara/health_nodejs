@@ -21,7 +21,7 @@ exports.postHistory = (function(req, res){
 });
 
 exports.getHistorys = (function(req, res){
-    History.find(function(err, history){
+    History.find({}).sort({"date":-1}).exec(function(err, history){
         if(err){
             res.send(err);
         }
