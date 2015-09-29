@@ -16,6 +16,7 @@ exports.postHistory = (function(req, res){
         if(err){
             res.send(err);
         }
+	console.log(history.username,history.foodname,'has been update history');
         res.json({ message: 'Food added to user history!', data: history })
     });
 });
