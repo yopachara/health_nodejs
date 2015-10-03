@@ -1,7 +1,6 @@
 var History = require('../models/history');
 var moment = require('moment');
-
-
+moment().utcOffset("+07:00");
 
 var today = moment().startOf('day'),
     tomorrow = moment(today).add(1, 'days');
