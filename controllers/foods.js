@@ -124,9 +124,9 @@ exports.searchFood = (function(req, res){
             }
         }
         console.log('Total',listcon.length,'object');
-        console.log('Find duplicate object', arr);
+        console.log('Merge duplicate object', arr);
         console.log('Highest value is', maxValue);
-        console.log('Total highest value is', newarr.length);
+        console.log('Total candidate value is', newarr.length);
         console.log(newarr);
         res.json({ result : newarr });
 
