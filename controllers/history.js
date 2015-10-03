@@ -1,5 +1,11 @@
 var History = require('../models/history');
+var moment = require('moment');
+moment().format();
 
+
+var today = moment().startOf('day'),
+    tomorrow = moment(today).add(1, 'days');
+console.log(today.toDate());
 exports.postHistory = (function(req, res){
     var history = new History();
 
@@ -21,7 +27,7 @@ exports.postHistory = (function(req, res){
 });
 
 exports.getHistorys = (function(req, res){
-    History.find({}).sort({"date":-1}).exec(function(err, history){
+    History.find({ }).sort({"date":-1}).exec(function(err, history){
         if(err){
             res.send(err);
         }
@@ -36,5 +42,17 @@ exports.getHistory = (function(req, res){
         }
         res.json(history);
     });
+});
+
+exports.getHistoryToday = (function(req, res){
+    console.log('Get history today')
+    History.find({ date: { $gte: today.toDate(),$lt: tomorrow.toDate()
+    }}).sort({"date":-1}).exec(function(err, history){
+        if(err){
+            res.send(err);
+        }
+        res.json({result : history});
+    });
+
 });
 

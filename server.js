@@ -84,13 +84,19 @@ router.route('/api/users')
     .get(authController.isAuthenticated, userController.getUsers);
 
 //Create endpoint handlers for history
+router.route('/api/historytoday')
+    .get(historyController.getHistoryToday);
+
 router.route('/api/history')
     .post(historyController.postHistory)
     .get(historyController.getHistorys);
+
 router.route('/api/history/:username')
     .get(historyController.getHistory);
 
-// Create endpoint handlers for /clients
+router.get('/api/historytoday',historyController.getHistoryToday);
+
+    // Create endpoint handlers for /clients
 router.route('/api/clients')
     .post(authController.isAuthenticated, clientController.postClients)
     .get(authController.isAuthenticated, clientController.getClients);
