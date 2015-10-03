@@ -22,6 +22,12 @@ var UserSchema = new mongoose.Schema({
   height: {
     type: Number
   },
+  bmr: {
+    type: Number
+  },
+  bmi: {
+    type: Number
+  },
   birthdate: {
     type: Date
   },

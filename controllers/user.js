@@ -1,5 +1,7 @@
 // Load required packages
 var User = require('../models/user');
+var moment = require('moment');
+
 
 // Create endpoint /api/users for POST
 exports.postUsers = function(req, res) {
@@ -11,7 +13,9 @@ exports.postUsers = function(req, res) {
     height: req.body.height,
     birthdate: req.body.birthdate,
     createAt: req.body.createAt,
-    type: req.body.type
+    type: req.body.type,
+    bmr: req.body.bmr,
+    bmi: req.body.bmi
   });
 
   user.save(function(err) {
@@ -27,7 +31,9 @@ exports.postUsers = function(req, res) {
                 "height": user.height,
                 "birthdate": user.birthdate,
                 "createAt": user.birthdate,
-                "type": user.type
+                "type": user.type,
+                "bmr": user.bmr,
+                "bmi": user.bmi
             });
   });
 };

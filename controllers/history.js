@@ -1,6 +1,6 @@
 var History = require('../models/history');
 var moment = require('moment');
-moment().format();
+
 
 
 var today = moment().startOf('day'),
