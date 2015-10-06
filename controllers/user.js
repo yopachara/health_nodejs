@@ -47,3 +47,13 @@ exports.getUsers = function(req, res) {
     res.json({ result: users });
   });
 };
+
+exports.getUser = (function(req, res){
+    User.find({ 'username':req.params.userid }, function(err, user){
+        if(err){
+            res.send(err);
+        }
+        res.json({result: user});
+    });
+});
+
