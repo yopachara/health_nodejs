@@ -83,6 +83,10 @@ router.route('/api/users')
     .post(userController.postUsers)
     .get(authController.isAuthenticated, userController.getUsers);
 
+router.route('/api/users/:userid')
+    .get(authController.isAuthenticated, userController.getUser);
+
+
 //Create endpoint handlers for history
 router.route('/api/historytoday')
     .get(historyController.getHistoryToday);
