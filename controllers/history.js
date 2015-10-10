@@ -56,3 +56,13 @@ exports.getHistoryToday = (function(req, res){
 
 });
 
+exports.deleteHistory = (function(req, res){
+    History.remove({ _id : req.params.historyid }, function(err) {
+    if (err)
+      res.send(err);
+
+    res.json({ message: 'History removed!' });
+  });
+});
+
+
