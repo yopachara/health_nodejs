@@ -95,6 +95,9 @@ router.route('/api/history')
     .post(historyController.postHistory)
     .get(historyController.getHistorys);
 
+router.route('/api/history/:historyid')
+    .delete(historyController.deleteHistory);
+
 router.route('/api/history/:username')
     .get(historyController.getHistory);
 
