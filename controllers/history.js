@@ -1,6 +1,6 @@
 var History = require('../models/history');
 var moment = require('moment');
-moment().utcOffset("+07:00");
+//moment().utcOffset("+07:00");
 
 var today = moment().startOf('day'),
     tomorrow = moment(today).add(1, 'days');
@@ -16,13 +16,14 @@ exports.postHistory = (function(req, res){
     history.carbo = req.body.carbo;
     history.weight = req.body.weight;
     history.classifier = req.body.classifier;
-    history.date = moment().utcOffset("+07:00");
+    console.log(moment().utcOffset("+07:00"));
+    history.date =moment().utcOffset("+07:00");
 
     history.save(function(err){
         if(err){
             res.send(err);
         }
-	console.log(history.username,history.foodname,'has been update history');
+        history.date = moment(history.date).utc("+07:00")
         console.log(history.username,history.foodname,'has been update history');
         res.json({ message: 'Food added to user history!', data: history })
     });
@@ -33,6 +34,15 @@ exports.getHistorys = (function(req, res){
         if(err){
             res.send(err);
         }
+        var count = 0;
+        var i;
+        for (i in history){
+            history[i].date =  moment(history[i].date).utc("+07:00");
+            if (i.hasOwnProperty(i)) {
+                count++;
+
+            }
+        }
         res.json({result : history});
     });
 });
@@ -41,6 +51,15 @@ exports.getHistory = (function(req, res){
     History.find({username : req.params.username}, function(err, history){
         if(err){
             res.send(err);
+        }
+        var count = 0;
+        var i;
+        for (i in history){
+            history[i].date =  moment(history[i].date).utc("+07:00");
+            if (i.hasOwnProperty(i)) {
+                count++;
+
+            }
         }
         res.json(history);
     });
@@ -52,6 +71,15 @@ exports.getHistoryToday = (function(req, res){
     }}).sort({"date":-1}).exec(function(err, history){
         if(err){
             res.send(err);
+        }
+        var count = 0;
+        var i;
+        for (i in history){
+            history[i].date =  moment(history[i].date).utc("+07:00");
+            if (i.hasOwnProperty(i)) {
+                count++;
+
+            }
         }
         res.json({result : history});
     });
