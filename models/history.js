@@ -27,7 +27,7 @@ var HistorySchema = new mongoose.Schema({
     classifier: {
         type: String
     },
-    date: { type: Date, default: Date.now }
+    date: { type: Date }
 });
 
 // Export

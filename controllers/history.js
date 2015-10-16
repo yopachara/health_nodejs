@@ -16,11 +16,13 @@ exports.postHistory = (function(req, res){
     history.carbo = req.body.carbo;
     history.weight = req.body.weight;
     history.classifier = req.body.classifier;
+    history.date = moment().utcOffset("+07:00");
 
     history.save(function(err){
         if(err){
             res.send(err);
         }
+        console.log(history.username,history.foodname,'has been update history');
         res.json({ message: 'Food added to user history!', data: history })
     });
 });
