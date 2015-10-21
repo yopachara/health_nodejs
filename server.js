@@ -103,6 +103,8 @@ router.route('/api/history/:username')
 
 router.get('/api/historytoday',historyController.getHistoryToday);
 
+router.get('/api/historycal',historyController.getHistoryCal);
+
     // Create endpoint handlers for /clients
 router.route('/api/clients')
     .post(authController.isAuthenticated, clientController.postClients)
@@ -123,5 +125,3 @@ app.use(router);
 // Start the server
 app.listen(port);
 console.log('server start on port 3000');
-
-

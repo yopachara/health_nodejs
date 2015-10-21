@@ -86,6 +86,53 @@ exports.getHistoryToday = (function(req, res){
 
 });
 
+exports.getHistoryCal = (function(req, res){
+    console.log('Get history cal')
+    var totalcal = [];
+    var todaysub = moment().startOf('day').subtract(1, 'days'),
+        tomorrowsub = moment().startOf('day');
+
+    History.find({ date: { $gte: today.toDate(),$lt: tomorrow.toDate()
+    }}).sort({"date":-1}).exec(function(err, history){
+        if(err){
+            res.send(err);
+        }
+        var count = 0;
+        var i;
+        var acal = 0;
+        for (i in history){
+            history[i].date =  moment(history[i].date).utc("+07:00");
+            acal += history[count].cal;
+            if (i.hasOwnProperty(i)) {
+                count++;
+            }
+        }
+        totalcal[0] = acal;
+        // res.json({result : totalcal});
+    });
+    History.find({ date: { $gte: todaysub.toDate(),$lt: tomorrowsub.toDate()
+    }}).sort({"date":-1}).exec(function(err, history){
+        if(err){
+            res.send(err);
+        }
+        var count = 0;
+        var i;
+        var acal = 0;
+        for (i in history){
+            history[i].date =  moment(history[i].date).utc("+07:00");
+            acal += history[count].cal;
+            if (i.hasOwnProperty(i)) {
+                count++;
+            }
+        }
+        totalcal[1] = acal;
+        res.json({result : totalcal});
+    });
+
+
+
+});
+
 exports.deleteHistory = (function(req, res){
     History.remove({ _id : req.params.historyid }, function(err) {
     if (err)
@@ -94,5 +141,3 @@ exports.deleteHistory = (function(req, res){
     res.json({ message: 'History removed!' });
   });
 });
-
-
