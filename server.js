@@ -78,6 +78,9 @@ router.route('/api/foods/:food_id')
 router.route('/api/foods/search')
     .post(foodController.searchFood);
 
+router.route('/api/jsonconvert')
+    .get(foodController.jsonConvert);
+
 //Create endpoint handlers for /users
 router.route('/api/users')
     .post(userController.postUsers)

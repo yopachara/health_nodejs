@@ -1,5 +1,14 @@
 var Foods = require('../models/foods');
 var wordcut = require("../lib/wordcut");
+var path = require("path"),
+    fs = require("fs");
+var m = require('../controllers/convertcsv.json');
+
+// var data = fs.readFile(path.join(__dirname, 'convertcsv.json'));
+// var json = JSON.parse(data);
+// console.log(m.length);
+
+//console.log(jsonObj[1]);
 
 wordcut.init();
 exports.postFoods = (function(req, res) {
@@ -15,7 +24,7 @@ exports.postFoods = (function(req, res) {
     foods.classifier = req.body.classifier;
     out = wordcut.cut(foods.name);
     console.log(out);
-    foods.foodcuts = out.split("|")
+    foods.foodcuts = out.split("|");
     console.log(foods.foodcuts);
 
     foods.save(function(err){
@@ -24,6 +33,23 @@ exports.postFoods = (function(req, res) {
         }
         res.json({ message: 'Food added to the database!',data: foods });
     });
+});
+
+exports.jsonConvert = (function(req, res){
+    console.log('start convert json');
+    for(var i = 0;i<m.length;i++){
+        console.log(wordcut.cut(m[i]['name']));
+        var word = wordcut.cut(m[i]['name']);
+        //out = wordcut.cut(m['foodname']);
+        m[i]['foodcuts'] = word.split("|");
+        //console.log(myKey['foodname']);
+//    console.log(m[i]["foodcuts"]);
+
+    }
+        //fs.writeFile('convertcsv.json', JSON.stringify(m));
+    res.json(m)
+//    res(m[1]);
+
 });
 
 exports.getFoods = (function(req, res){
@@ -83,7 +109,7 @@ exports.searchFood = (function(req, res){
     search = req.body.search;
     out = wordcut.cut(search);
     console.log(out);
-    searchcuts = out.split("|")
+    searchcuts = out.split("|");
     console.log(searchcuts);
     list = [];
     function asyncLoop(i, cb) {
