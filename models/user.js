@@ -31,6 +31,15 @@ var UserSchema = new mongoose.Schema({
   birthdate: {
     type: Date
   },
+  carbo: {
+    type: Number
+  },
+  protein: {
+    type: Number
+  },
+  fat: {
+    type: Number
+  },
   createAt: {
     type: Date, default: Date.now
   },

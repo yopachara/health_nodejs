@@ -15,7 +15,10 @@ exports.postUsers = function(req, res) {
     createAt: req.body.createAt,
     type: req.body.type,
     bmr: req.body.bmr,
-    bmi: req.body.bmi
+    bmi: req.body.bmi,
+    carbo: req.body.carbo,
+    protein: req.body.protein,
+    fat: req.body.fat
   });
 
   user.save(function(err) {
@@ -33,7 +36,12 @@ exports.postUsers = function(req, res) {
                 "createAt": user.birthdate,
                 "type": user.type,
                 "bmr": user.bmr,
-                "bmi": user.bmi
+                "bmi": user.bmi,
+                "carbo": user.carbo,
+                "protein": user.protein,
+                "fat": user.fat
+
+
             });
   });
 };
@@ -56,4 +64,3 @@ exports.getUser = (function(req, res){
         res.json({result: user});
     });
 });
-
