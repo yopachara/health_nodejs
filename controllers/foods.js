@@ -47,7 +47,7 @@ exports.jsonConvert = (function(req, res){
 
     }
         //fs.writeFile('convertcsv.json', JSON.stringify(m));
-    res.json(m)
+    res.json(m);
 //    res(m[1]);
 
 });

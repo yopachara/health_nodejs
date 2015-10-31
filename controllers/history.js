@@ -2,9 +2,8 @@ var History = require('../models/history');
 var moment = require('moment');
 //moment().utcOffset("+07:00");
 
-var today = moment().startOf('day'),
-    tomorrow = moment(today).add(1, 'days');
-console.log(today.toDate());
+
+
 exports.postHistory = (function(req, res){
     var history = new History();
 
@@ -23,9 +22,9 @@ exports.postHistory = (function(req, res){
         if(err){
             res.send(err);
         }
-        history.date = moment(history.date).utc("+07:00")
+        history.date = moment(history.date).utc("+07:00");
         console.log(history.username,history.foodname,'has been update history');
-        res.json({ message: 'Food added to user history!', data: history })
+        res.json({ message: 'Food added to user history!', data: history });
     });
 });
 
@@ -66,7 +65,9 @@ exports.getHistory = (function(req, res){
 });
 
 exports.getHistoryToday = (function(req, res){
-    console.log('Get history today')
+    var today = moment().startOf('day'),
+        tomorrow = moment(today).add(1, 'days');
+    console.log('Get history today');
     History.find({ date: { $gte: today.toDate(),$lt: tomorrow.toDate()
     }}).sort({"date":-1}).exec(function(err, history){
         if(err){
