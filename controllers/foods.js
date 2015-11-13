@@ -154,7 +154,7 @@ exports.searchFood = (function(req, res){
         console.log('Highest value is', maxValue);
         console.log('Total candidate value is', newarr.length);
         console.log(newarr);
-        res.json({ result : newarr });
+        res.json({ counts : newarr.length,result : newarr });
 
     });
 
