@@ -149,6 +149,19 @@ exports.searchFood = (function(req, res){
                 newarr.push(listcon[findIndex(listcon,'_id',namearr[j])]);
             }
         }
+        for(var i = 0;i < searchcuts.length;i++){
+            console.log('search in searchcut');
+            if(searchcuts[i]=='พิเศษ'){
+                console.log('Found Extra');
+                for(var k = 0;k<newarr.length;k++){
+                    newarr[k].cal = newarr[k].cal * 1.2;
+                    newarr[k].carbo = newarr[k].carbo * 1.2;
+                    newarr[k].fat = newarr[k].fat * 1.2;
+                    newarr[k].protein = newarr[k].protein * 1.2;
+                    newarr[k].weight = newarr[k].weight * 1.2;
+                }
+            }
+        }
         console.log('Total',listcon.length,'object');
         console.log('Merge duplicate object', arr);
         console.log('Highest value is', maxValue);
