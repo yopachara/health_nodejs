@@ -150,10 +150,10 @@ exports.searchFood = (function(req, res){
             }
         }
         for(var i = 0;i < searchcuts.length;i++){
-            console.log('search in searchcut');
             if(searchcuts[i]=='พิเศษ'){
                 console.log('Found Extra');
                 for(var k = 0;k<newarr.length;k++){
+                    newarr[k].name = newarr[k].name+'พิเศษ';
                     newarr[k].cal = newarr[k].cal * 1.2;
                     newarr[k].carbo = newarr[k].carbo * 1.2;
                     newarr[k].fat = newarr[k].fat * 1.2;
@@ -161,6 +161,26 @@ exports.searchFood = (function(req, res){
                     newarr[k].weight = newarr[k].weight * 1.2;
                 }
             }
+
+            // if(searchcuts[i]=='ไม่ใส่'){
+            //     console.log('Found Except');
+            //     Foods.findOne({ name : searchcuts[i+1]},function (err, out) {
+            //         console.log('this if from Except');
+            //         console.log(out.name);
+            //
+            //         for(var k = 0;k<newarr.length;k++){
+            //             newarr[k].name = newarr[k].name+'ไม่ใส่'+out.name;
+            //             newarr[k].cal = newarr[k].cal - out.cal;
+            //             newarr[k].carbo = newarr[k].carbo - out.carbo;
+            //             newarr[k].fat = newarr[k].fat - out.fat;
+            //             newarr[k].protein = newarr[k].protein - out.protein;
+            //             // newarr[k].weight = newarr[k].weight out.weight;
+            //             console.log(newarr[k]);
+            //         }
+            //     });
+            //
+            // }
+
         }
         console.log('Total',listcon.length,'object');
         console.log('Merge duplicate object', arr);
@@ -172,6 +192,8 @@ exports.searchFood = (function(req, res){
                     result : newarr });
 
     });
+
+
 
 
 });
